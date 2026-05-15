@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel – Tech With Mujahid Academy</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <div class="logo-owner">
+          <img src="ChatGPT Image Nov 1, 2025, 05_39_05 PM.png" alt="Tech with Mujahid Logo" class="logo-img" />
+          <div class="logo-owner-text">
+            <span class="logo">Tech with Mujahid</span>
+            <span class="org-desc">Empowering you with web development skills &amp; building modern websites.</span>
+          </div>
+        </div>
+        <h1>🔐 Admin Panel</h1>
+        <p>Upload questions, manage topics, and view protected quiz results.</p>
+        <div class="actions header-actions">
+          <a href="index.html" class="secondary">🏠 Back to Quiz</a>
+          <button id="themeToggle" class="secondary">🌙 Dark Mode</button>
+        </div>
+      </header>
+
+      <section id="loginPanel" class="card">
+        <h2 style="margin-bottom:16px">Admin Access</h2>
+        <label for="adminPassword">Admin password</label>
+        <input id="adminPassword" type="password" placeholder="Enter admin password" style="margin-top:8px;margin-bottom:4px" />
+        <div class="actions">
+          <button id="adminLoginBtn" type="button">🔑 Enter Admin</button>
+          <a href="index.html" class="secondary">Cancel</a>
+        </div>
+        <p class="note" style="margin-top:12px">This page is not linked from the student app and works only with the correct password.</p>
+      </section>
+
+      <section id="dashboard" class="hidden">
+        <div class="dashboard-grid">
+          <div class="card small-card">
+            <h2>📚 Question Bank</h2>
+            <p id="questionCount">0 questions</p>
+          </div>
+          <div class="card small-card">
+            <h2>📊 Saved Results</h2>
+            <p id="resultCount">0 attempts</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>🛠 Admin Tools</h2>
+          <div class="form-grid">
+            <label for="adminQuestionSearch">Search questions</label>
+            <input id="adminQuestionSearch" type="text" placeholder="Search by language, topic, level, or text" />
+            <label for="importQuestionsInput">Import questions (JSON)</label>
+            <input id="importQuestionsInput" type="file" accept=".json" />
+            <label>Export</label>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <button id="exportQuestionsBtn" type="button" class="secondary">⬇ Export Questions</button>
+              <button id="exportResultsBtn" type="button" class="secondary">⬇ Export Results</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>➕ Add a New Question</h2>
+          <div class="form-grid">
+            <label for="newSubject">Language</label>
+            <select id="newSubject">
+              <option value="HTML">HTML</option>
+              <option value="CSS">CSS</option>
+              <option value="JavaScript">JavaScript</option>
+            </select>
+            <label for="newTopic">Topic</label>
+            <select id="newTopic"></select>
+            <label for="newDifficulty">Difficulty</label>
+            <select id="newDifficulty">
+              <option value="Beginner">Beginner</option>
+              <option value="Easy">Easy</option>
+              <option value="Medium">Medium</option>
+              <option value="Hard">Hard</option>
+              <option value="Advanced">Advanced</option>
+              <option value="Expert">Expert</option>
+            </select>
+            <label for="newQuestionText">Question text</label>
+            <textarea id="newQuestionText" rows="3" placeholder="Write the question"></textarea>
+            <label for="newOptionA">Option A</label>
+            <input id="newOptionA" type="text" placeholder="Option A" />
+            <label for="newOptionB">Option B</label>
+            <input id="newOptionB" type="text" placeholder="Option B" />
+            <label for="newOptionC">Option C</label>
+            <input id="newOptionC" type="text" placeholder="Option C" />
+            <label for="newOptionD">Option D</label>
+            <input id="newOptionD" type="text" placeholder="Option D" />
+            <label for="newCorrect">Correct answer</label>
+            <select id="newCorrect">
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+            </select>
+            <label for="newExplanation">Explanation (optional)</label>
+            <textarea id="newExplanation" rows="2" placeholder="Why the answer is correct"></textarea>
+          </div>
+          <div class="actions">
+            <button id="addQuestionBtn" type="button">💾 Save Question</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>📋 Questions</h2>
+          <div id="questionList"></div>
+        </div>
+
+        <div class="card">
+          <h2>📈 Recent Results</h2>
+          <div id="resultList"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>
+        &copy; 2026 Tech with Mujahid &mdash; Web Development Training &amp; Website Solutions.<br />
+        <span>Contact: <a href="mailto:abdullateefmujahid@gmail.com">abdullateefmujahid@gmail.com</a> | 07048402405</span>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+      // Robust admin login fallback — runs independently of script.js
+      (function () {
+        const PASS = "mujahid2026";
+        function tryLogin() {
+          var pw = document.getElementById("adminPassword");
+          var lp = document.getElementById("loginPanel");
+          var db = document.getElementById("dashboard");
+          if (!pw) return;
+          var val = pw.value.trim();
+          if (val === PASS) {
+            if (lp) lp.classList.add("hidden");
+            if (db) { db.classList.remove("hidden"); db.style.display = ""; }
+          } else {
+            pw.style.borderColor = "#EF4444";
+            pw.style.boxShadow = "0 0 0 3px rgba(239,68,68,0.3)";
+            setTimeout(function(){ pw.style.borderColor = ""; pw.style.boxShadow = ""; }, 1500);
+            pw.focus();
+            if (val) alert("Incorrect password. Please try again.");
+          }
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+          var btn = document.getElementById("adminLoginBtn");
+          var pw  = document.getElementById("adminPassword");
+          if (btn) btn.addEventListener("click", tryLogin);
+          if (pw)  pw.addEventListener("keydown", function(e){ if(e.key==="Enter"){ e.preventDefault(); tryLogin(); }});
+        });
+      })();
+    </script>
+  </body>
+</html>

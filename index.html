@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tech With Mujahid Academy – CBT Practice</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <div class="logo-owner">
+          <img src="ChatGPT Image Nov 1, 2025, 05_39_05 PM.png" alt="Tech with Mujahid Logo" class="logo-img" />
+          <div class="logo-owner-text">
+            <span class="logo">Tech with Mujahid</span>
+            <span class="org-desc">Empowering you with web development skills &amp; building modern websites.</span>
+          </div>
+        </div>
+        <h1>CBT Practice: HTML, CSS, JavaScript</h1>
+        <p>Choose your topic, answer questions, and see your score instantly.</p>
+        <div class="actions header-actions">
+          <a href="topics.html" class="secondary">📚 Practice Topics</a>
+          <a href="history.html" class="secondary">📊 View History</a>
+          <a href="assistant.html" class="secondary">🤖 AI Assistant</a>
+          <button id="themeToggle" class="secondary">🌙 Dark Mode</button>
+        </div>
+      </header>
+
+      <section id="intro" class="card">
+        <div class="form-grid">
+          <label for="userName">Your name</label>
+          <input id="userName" type="text" placeholder="Enter your name" required />
+
+          <label for="subjectSelect">Choose language</label>
+          <select id="subjectSelect"></select>
+
+          <label for="topicSelect">Topic</label>
+          <select id="topicSelect"></select>
+
+          <label for="difficultySelect">Difficulty level</label>
+          <select id="difficultySelect">
+            <option value="all">All levels</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+            <option value="Advanced">Advanced</option>
+            <option value="Expert">Expert</option>
+          </select>
+
+          <label for="numberOfQuestions">Number of questions</label>
+          <input id="numberOfQuestions" type="number" min="10" max="100" value="20" />
+          <p id="questionAvailability" class="note availability-note"></p>
+
+          <label for="languageSelect">Quiz display language</label>
+          <select id="languageSelect">
+            <option value="english">English (supported)</option>
+            <option value="hausa" disabled>Hausa (coming soon)</option>
+            <option value="yoruba" disabled>Yoruba (coming soon)</option>
+            <option value="igbo" disabled>Igbo (coming soon)</option>
+            <option value="french" disabled>French (coming soon)</option>
+            <option value="arabic" disabled>Arabic (coming soon)</option>
+          </select>
+          <span style="font-size:0.82rem;color:var(--muted)">Only English is available now. More languages coming soon!</span>
+        </div>
+        <div class="actions">
+          <button id="startQuizBtn" type="button">🚀 Start Quiz</button>
+          <a href="topics.html" class="secondary">📚 Practice Topics</a>
+          <button id="viewSamplesBtn" type="button" class="secondary">📝 Sample Questions</button>
+        </div>
+      </section>
+
+      <section id="quizPanel" class="card hidden">
+        <div class="quiz-header">
+          <h2 id="quizTitle"></h2>
+          <p id="quizInfo"></p>
+        </div>
+        <p id="timerText" class="note"></p>
+        <div class="progress-bar"><div id="progressFill"></div></div>
+        <p id="progressText" class="note"></p>
+        <div id="questionContainer"></div>
+        <div class="actions quiz-actions">
+          <button id="prevBtn" type="button" class="secondary">← Previous</button>
+          <button id="nextBtn" type="button" class="secondary">Next →</button>
+          <button id="submitBtn" type="button">✅ Submit Answers</button>
+        </div>
+      </section>
+
+      <section id="resultPanel" class="card hidden">
+        <h2>🎯 Quiz Result</h2>
+        <p id="scoreText"></p>
+        <div id="reviewList"></div>
+        <div class="actions">
+          <button id="restartBtn" type="button">🔄 Take Another Quiz</button>
+          <a href="history.html" class="secondary">📊 View Full History</a>
+        </div>
+      </section>
+
+      <section class="card suggestions">
+        <h2>✨ What this app includes</h2>
+        <ul>
+          <li>Choose HTML, CSS, or JavaScript practice topics</li>
+          <li>Practice W3Schools-style topics by level</li>
+          <li>See the available minimum and maximum question count</li>
+          <li>Get automatic timing: 60 questions gives 50 minutes</li>
+          <li>Review answers immediately after submitting</li>
+          <li>🤖 AI Study Assistant to help you learn</li>
+        </ul>
+        <p class="note" style="margin-top:10px">Enter your name, pick a focused topic, and start. Each quiz is shuffled so students get a fresh order every time.</p>
+      </section>
+    </main>
+
+    <footer>
+      <div>
+        &copy; 2026 Tech with Mujahid &mdash; Web Development Training &amp; Website Solutions.<br />
+        <span>Contact: <a href="mailto:abdullateefmujahid@gmail.com">abdullateefmujahid@gmail.com</a> | 07048402405</span><br />
+        <span style="font-size:0.82rem">This CBT app is brought to you by Tech with Mujahid, dedicated to teaching web development and building modern websites.</span>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
